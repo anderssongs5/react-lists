@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import cars from './data/cars.json'
+
+class CartItem extends Component {
+  render() {
+    const {car} = this.props
+    return(
+      <li>
+        <p><strong>Name: </strong>{car.name}</p>
+        <p><strong>Company: </strong>{car.company}</p>
+      </li>
+    )
+  }
+}
 
 function App() {
+  const numbers = [1, 1, 3, 4, 5]
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h4>Working with lists</h4>
+      {numbers.map((number, index) => {
+        return <p key={{index}}>I'm the number {number}</p>
+      })}
+      <br /><br />
+      <ul>
+        {
+          cars.map( car => {
+            return(
+              <CartItem key={car.id} car={car} />
+            )
+          })
+        }
+      </ul>
     </div>
   );
 }
